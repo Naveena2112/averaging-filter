@@ -1,0 +1,17 @@
+I = imread('flowers.jpg');
+h = ones(5,5) / 25;
+I2 = imfilter(I,h);
+imshow(I), title('Original Image');
+figure, imshow(I2), title('Filtered Image')
+%Read in the image
+I = imread('flowers.jpg');
+%Add noise to it.
+J = imnoise(I,'salt & pepper',0.02);
+figure, imshow(J)
+K = filter2(fspecial('average',3),J)/255;
+%Now use a median filter to filter the noisy image and display the results. Notice
+that
+%medfilt2 does a better job of removing noise, with less blurring of edges.
+L = medfilt2(J,[3 3]);
+figure, imshow(K)
+figure, imshow(L)
